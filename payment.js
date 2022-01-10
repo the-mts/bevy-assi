@@ -9,6 +9,7 @@ export default TaskItem = (props) => {
     const get_d = (d) => {
         return d.slice(8,10)
     }
+    // console.log(props)
     return (
         <View style={styles.container}>
             <View style={styles.taskContainer}>
@@ -63,11 +64,10 @@ const styles = StyleSheet.create({
     amtlent: {
         fontSize : 18,
         fontWeight : 'bold',
-        color : '#2a2'
+        color : '#2a2',
     },
     amtborr: {
         fontSize : 18,
-
         fontWeight : 'bold',
         color : '#c11'
     },
