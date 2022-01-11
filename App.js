@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { SectionList, Keyboard, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SectionList, Pressable, SafeAreaView, StyleSheet, Text, View, Alert } from 'react-native';
 import TaskItem from './payment.js';
 import data from './data.json'
 
@@ -37,13 +37,17 @@ export default function App() {
     return mon[parseInt(d.slice(5,7))-1]+' '+d.slice(0,4)
   }
   const [total, getTotal] = useState(get_total(data));
-  console.log(total)
   return (
     <View style={styles.container}>
         <Text style={styles.heading}>Mohd. Talib</Text>
-        <View style={(total <= 0) ? styles.totalg : styles.totalr}>
-        <Text style={styles.totalText}>Total Amount to be paid:</Text>
-        <Text style={styles.totalAmt}> {total}</Text></View>
+        <View style={(total >= 0) ? styles.totalg : styles.totalr}>
+        <Text style={styles.totalText}>Total Payable</Text>
+        <Text style={styles.totalAmt}> {total}</Text>
+        </View>
+        <View style={styles.buttonArea}>
+        <Pressable style={(total >= 0) ? styles.totalg : styles.totalr} disabled={total==0} onPress={()=>Alert.alert('Button Pressed.')}>
+        <Text style={styles.buttonText}>{total==0 ? 'Settled Up.' : (total > 0 ? 'Get Credit' : 'Settle Up')}</Text></Pressable>
+        </View>
       <SafeAreaView style={styles.scrollView}>
       <SectionList
         sections={f_data}
@@ -117,5 +121,17 @@ const styles = StyleSheet.create({
     fontWeight : 'bold',
     textAlign : 'center',
     paddingBottom : 20,
+  },
+  buttonText : {
+    paddingHorizontal : 20,
+    color : '#fff',
+    fontSize : 25,
+    fontWeight : 'bold',
+    textAlign : 'center',
+    paddingVertical : 10,
+  },
+  buttonArea : {
+    paddingVertical : 5,
+    textAlignVertical : 'center',
   }
 });

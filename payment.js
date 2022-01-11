@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default TaskItem = (props) => {
     const mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -15,6 +16,7 @@ export default TaskItem = (props) => {
             <View style={styles.taskContainer}>
             <View style={styles.taskMainContainer}>
             <Text style={styles.dateText}>{mon[get_i(props.rec.date)]+'\n'+get_d(props.rec.date)}</Text>
+            <MaterialIcons name="movie" size={24} style={styles.icon}/>
             <View style={styles.taskSubContainer}>
                 <Text style={styles.task}>{props.rec.description}</Text>
                 <Text style={styles.paidBy}>Paid by {props.rec.paid_by}.</Text>
@@ -83,4 +85,8 @@ const styles = StyleSheet.create({
         fontSize : 15,
         textAlign: 'center'
     },
+    icon : {
+        marginLeft:5,
+        color : '#aaa'
+    }
 });
